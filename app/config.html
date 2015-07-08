@@ -1,0 +1,120 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>gm checker</title>
+	<style>
+		body {
+			font-family:Meiryo,'Hiragino Kaku Gothic Pro','MS PGothic','lucida grande',tahoma,verdana,arial,sans-serif;
+			font-size:12px;
+			width: 480px;
+			background: #fff;
+			background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#fafafa)); 
+			margin:0;
+			padding:0;
+		}
+		h3 {
+			background-color: #f6aa2f;
+			color:white;
+			text-align: center;
+			margin: 2px;
+		}
+		h4 {
+			border-left:8px solid #ccc;
+			border-bottom:1px solid #ccc;
+			padding-left: 4px;
+			margin: 8px 2px 2px;
+		}
+		input,
+		select,
+		textarea {
+			font-family:Meiryo,'Hiragino Kaku Gothic Pro','MS PGothic','lucida grande',tahoma,verdana,arial,sans-serif;
+		}
+		input[type="text"],
+		input[type="password"],
+		textarea,
+		select {
+			border:1px solid #ccc;
+			padding:2px 3px;
+			border-radius: 3px;
+		}
+		.container { padding:1em; }
+		.par { margin:.5em 1em; }
+		.copyright, .ver {
+			font-size: 90%;
+		}
+		input[type="button"] {
+			height: 2em;
+			min-width: 6.5em;
+			padding: 3px 12px 5px;
+			border: 0px;
+			background-color: rgba(192, 192, 192, 0.7);
+			color: #212121;
+		}
+		input[type="button"]:hover { background-color: rgba(212, 212, 212, 0.82); }
+		input[type="button"]:focus { background-color: rgba(212, 212, 212, 0.82); }
+		input[type="button"]:active { background-color: #212121; color: white; }
+		input[type="button"]:disabled { background-color: #f8f8f8; color:#888; }
+		input[type="button"].default { background-color: #6D84B4; color: white; }
+		input[type="button"]:hover.default { background-color: #7b95cb; }
+		input[type="button"]:active.default { background-color: #212121; }
+		input[type="button"]:disabled.default { background-color: #bbb; }
+	</style>
+	<script type="text/javascript" src="./jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="./resource.js"></script>
+	<script type="text/javascript" src="./premium.js"></script>
+	<script type="text/javascript" src="./config.js"></script>
+</head>
+<body>
+<div class="container">
+	<h3>GM Checker</h3>
+	<div style="text-align:right">
+		<span class="ver">version 0.1.14</span>&nbsp;
+		<span class="copyright"><a href="http://www.orangesoft.co.jp" target="_blank">(C) Orangesoft Inc.</a></span>
+	</div>
+	<h4 data-i18n="cfg_overview">概要</h4>
+	<div class="par" data-i18n="cfg_description">
+		Gmail(TM)に簡易誤送信対策機能を追加します。
+	</div>
+	<div>
+		<h4 data-i18n="cfg_settings">設定</h4>
+		<div class="par">
+			<span data-i18n="cfg_tocc_count1">ToとCcのアドレスの合計が</span>
+			<select name="to_cc" id="to_cc" size="1">
+				<option value="5">5</option>
+				<option value="10">10</option>
+				<option value="15">15</option>
+				<option value="20">20</option>
+				<option value="25">25</option>
+				<option value="30">30</option>
+			</select><span data-i18n="cfg_tocc_count2">個を超えたら警告する。</span>
+		</div>
+		<div class="par">
+			<input type="checkbox" id="confirm_sent"><label for="confirm_sent" data-i18n="cfg_confirm">メールを送る前に確認する。</label>
+		</div>
+		<div class="par">
+			<label for="keywords" data-i18n="cfg_warning">以下の文字列を含んでいたときは警告する</label><br>
+			<textarea id="keywords" rows="2" placeholder="警告キーワード" style="width:24em"></textarea>
+		</div>
+		<div class="par">
+			<label for="force_bcc" data-i18n="cfg_forcebcc">以下のアドレスをbccに追加する</label><br>
+			<textarea id="force_bcc" rows="2" placeholder="bccアドレス" style="width:24em"></textarea>
+		</div>
+		<div class="par">
+			<input type="checkbox" id="verbose"><label for="verbose" data-i18n="cfg_verbose">デベロッパーモード</label>
+		</div>
+		<h4 data-i18n="cfg_premium">Premium版</h4>
+		<div class="par">
+			<label for="licence" data-i18n="cfg_license">ライセンスコード</label>&nbsp;&nbsp;
+			<span id="leftdate"></span><br>
+			<input type="text" id="license" style="width:24em">
+			<input type="button" id="activate" name="activate" value="登録" data-i18n="activate">&nbsp;&nbsp;
+		</div>
+	</div>
+	<div style="margin:1em 0"><hr noshade></div>
+	<div style="margin-bottom:1em">
+		<input type="button" class="default" id="apply" name="apply" value="適用" data-i18n="apply">&nbsp;&nbsp;
+		<span id="tip" style="display:none; color:#069" data-i18n="cfg_updated">更新しました</span>
+	</div>
+</div>
+</body>
+</html>

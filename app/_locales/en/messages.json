@@ -1,0 +1,98 @@
+{
+	"appDescription":{
+		"message": "Mail missending prevention for Gmail(TM)"
+	},
+	"browserActionTitle":{
+		"message": "Configure GM Checker"
+	},
+	"cancel":{
+		"message": "Cancel"
+	},
+	"apply":{
+		"message": "Apply"
+	},
+	"activate":{
+		"message":"Activate"
+	},
+	"activated":{
+		"message":"Activated"
+	},
+	"licensePeriod":{
+		"message":"%Y年%M月%D日まで有効です（あと%L日）"
+	},
+	"btnSend":{
+		"message": "Send"
+	},
+	"btnCompose":{
+		"message": "Compose"
+	},
+	"unexpectedError":{
+		"message": "Unexpected error occurred.(%1)"
+	},
+	"toccLimitOver": {
+		"message": "Number of (To+Cc) exceeds the upper limit %1."
+	},
+	"noSubject":{
+		"message":"No subject."
+	},
+	"noBodyText":{
+		"message": "No body text."
+	},
+	"foundMyNumber":{
+		"message": "It contains the text that might be my number."
+	},
+	"keywordWarningSubject":{
+		"message": "Keyword warning - '%1' found in Subject."
+	},
+	"keywordWarningBody":{
+		"message": "Keyword warning - '%1' found in Body text."
+	},
+	"autoAppend":{
+		"message": "(auto-append)"
+	},
+	"sendRecipe_caption":{
+		"message": "Confirm destination addresses"
+	},
+	"cfg_overview":{
+		"message":"Description"
+	},
+	"cfg_description":{
+		"message":"Mail missending prevention for Gmail(TM)"
+	},
+	"cfg_settings":{
+		"message":"Settings"
+	},
+	"cfg_tocc_count1":{
+		"message":"To and Cc address count"
+	},
+	"cfg_tocc_count2":{
+		"message":"over warning"
+	},
+	"cfg_confirm":{
+		"message":"Confirm before send message"
+	},
+	"cfg_warning":{
+		"message":"以下の文字列を含んでいたときは警告する"
+	},
+	"cfg_forcebcc":{
+		"message":"Auto append these email to Bcc"
+	},
+	"cfg_verbose":{
+		"message":"Developper mode"
+	},
+	"cfg_premium":{
+		"message":"Premium version"
+	},
+	"cfg_license":{
+		"message":"License code:"
+	},
+	"cfg_apply":{
+		"message":"Apply"
+	},
+	"cfg_updated":{
+		"message":"Updated"
+	},
+	"invalidLicense":{
+		"message":"ライセンスコードに誤りがあります。"
+	}
+}

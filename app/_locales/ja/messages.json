@@ -1,0 +1,95 @@
+{
+	"appDescription":{
+		"message": "Gmail(TM)に誤送信対策機能を追加"
+	},
+	"browserActionTitle":{
+		"message": "GM Checkerの設定"
+	},
+	"cancel":{
+		"message": "キャンセル"
+	},
+	"apply":{
+		"message":"適用"
+	},
+	"activate":{
+		"message":"登録"
+	},
+	"activated":{
+		"message":"登録済み"
+	},
+	"licensePeriod":{
+		"message":"%Y年%M月%D日まで有効です（あと%L日）"
+	},
+	"btnSend":{
+		"message": "送信"
+	},
+	"btnCompose":{
+		"message": "作成"
+	},
+	"unexpectedError":{
+		"message": "予期しないエラーが発生しました。(%1)"
+	},
+	"toccLimitOver": {
+		"message": "宛先とCcのアドレス総数が上限 %1件を超えています。"
+	},
+	"noSubject":{
+		"message":"題名が未記入です。"
+	},
+	"noBodyText":{
+		"message": "本文が未記入です。"
+	},
+	"foundMyNumber":{
+		"message": "マイナンバーと類推されるテキストが含まれています。"
+	},
+	"keywordWarningSubject":{
+		"message": "警告キーワード「%1」が題名に含まれています。"
+	},
+	"keywordWarningBody":{
+		"message": "警告キーワード「%1」が本文に含まれています。"
+	},
+	"autoAppend":{
+		"message": "(自動追加)"
+	},
+	"sendRecipe_caption":{
+		"message": "送信先の確認"
+	},
+	"cfg_overview":{
+		"message":"概要"
+	},
+	"cfg_description":{
+		"message":"Gmail(TM)に簡易誤送信対策機能を追加します。"
+	},
+	"cfg_settings":{
+		"message":"設定"
+	},
+	"cfg_tocc_count1":{
+		"message":"ToとCcのアドレスの合計が"
+	},
+	"cfg_tocc_count2":{
+		"message":"個を超えたら警告する"
+	},
+	"cfg_confirm":{
+		"message":"メールを送る前に確認する"
+	},
+	"cfg_warning":{
+		"message":"以下の文字列を含んでいたときは警告する"
+	},
+	"cfg_forcebcc":{
+		"message":"以下のアドレスをbccに追加する"
+	},
+	"cfg_verbose":{
+		"message":"デベロッパーモード"
+	},
+	"cfg_premium":{
+		"message":"Premium版"
+	},
+	"cfg_license":{
+		"message":"ライセンスコード"
+	},
+	"cfg_updated":{
+		"message":"更新しました"
+	},
+	"invalidLicense":{
+		"message":"ライセンスコードに誤りがあります。"
+	}
+}
