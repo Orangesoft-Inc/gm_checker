@@ -75,7 +75,7 @@ opts.verbose && console.log('go dialog');
 			return false;
 		}
 
-		if (ev.keyCode == KEYS.VK_ENTER && ev.ctrlKey) {
+		if (ev.keyCode == KEYS.VK_ENTER && ((ev.ctrlKey && !ev.metaKey) || (!ev.ctrlKey && ev.metaKey))) {
 			// Ctrl+Enter押下時、メール編集画面が開いているなら、チェック処理をおこなう
 opts.verbose && console.log("Ctrl + Enter");
 			var btn = findSendButton();
