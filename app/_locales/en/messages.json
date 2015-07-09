@@ -17,6 +17,9 @@
 	"activated":{
 		"message":"Activated"
 	},
+	"deactivate":{
+		"message":"Deactivate"
+	},
 	"licensePeriod":{
 		"message":"%Y年%M月%D日まで有効です（あと%L日）"
 	},
@@ -69,13 +72,16 @@
 		"message":"over warning"
 	},
 	"cfg_confirm":{
-		"message":"Confirm before send message"
+		"message":"Enable mail missending prevention feature"
 	},
 	"cfg_warning":{
 		"message":"以下の文字列を含んでいたときは警告する"
 	},
 	"cfg_forcebcc":{
 		"message":"Auto append these email to Bcc"
+	},
+	"cfg_reinforce":{
+		"message":"Confirm each email addresses (Premium)"
 	},
 	"cfg_verbose":{
 		"message":"Developper mode"

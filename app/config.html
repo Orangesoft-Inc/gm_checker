@@ -78,30 +78,37 @@
 	<div>
 		<h4 data-i18n="cfg_settings">設定</h4>
 		<div class="par">
-			<span data-i18n="cfg_tocc_count1">ToとCcのアドレスの合計が</span>
-			<select name="to_cc" id="to_cc" size="1">
-				<option value="5">5</option>
-				<option value="10">10</option>
-				<option value="15">15</option>
-				<option value="20">20</option>
-				<option value="25">25</option>
-				<option value="30">30</option>
-			</select><span data-i18n="cfg_tocc_count2">個を超えたら警告する。</span>
+			<input type="checkbox" id="confirm_sent"><label for="confirm_sent" data-i18n="cfg_confirm">誤送信対策機能を有効にする</label>
 		</div>
-		<div class="par">
-			<input type="checkbox" id="confirm_sent"><label for="confirm_sent" data-i18n="cfg_confirm">メールを送る前に確認する。</label>
+		<div id="config">
+			<div class="par">
+				<span data-i18n="cfg_tocc_count1">ToとCcのアドレスの合計が</span>
+				<select name="to_cc" id="to_cc" size="1">
+					<option value="5">5</option>
+					<option value="10">10</option>
+					<option value="15">15</option>
+					<option value="20">20</option>
+					<option value="25">25</option>
+					<option value="30">30</option>
+				</select><span data-i18n="cfg_tocc_count2">個を超えたら警告する。</span>
+			</div>
+			<div class="par">
+				<label for="keywords" data-i18n="cfg_warning">以下の文字列を含んでいたときは警告する</label><br>
+				<textarea id="keywords" rows="2" placeholder="警告キーワード" style="width:24em"></textarea>
+			</div>
+			<div class="par">
+				<label for="force_bcc" data-i18n="cfg_forcebcc">以下のアドレスをbccに追加する</label><br>
+				<textarea id="force_bcc" rows="2" placeholder="bccアドレス" style="width:24em"></textarea>
+			</div>
+			<div class="par">
+				<input type="checkbox" id="reinforce"><label for="reinforce" data-i18n="cfg_reinforce">宛先をひとつひとつ確認する  (Premium)</label>
+			</div>
+			<div class="par">
+				<input type="checkbox" id="verbose"><label for="verbose" data-i18n="cfg_verbose">デベロッパーモード</label>
+			</div>
 		</div>
-		<div class="par">
-			<label for="keywords" data-i18n="cfg_warning">以下の文字列を含んでいたときは警告する</label><br>
-			<textarea id="keywords" rows="2" placeholder="警告キーワード" style="width:24em"></textarea>
-		</div>
-		<div class="par">
-			<label for="force_bcc" data-i18n="cfg_forcebcc">以下のアドレスをbccに追加する</label><br>
-			<textarea id="force_bcc" rows="2" placeholder="bccアドレス" style="width:24em"></textarea>
-		</div>
-		<div class="par">
-			<input type="checkbox" id="verbose"><label for="verbose" data-i18n="cfg_verbose">デベロッパーモード</label>
-		</div>
+	</div>
+	<div>
 		<h4 data-i18n="cfg_premium">Premium版</h4>
 		<div class="par">
 			<label for="licence" data-i18n="cfg_license">ライセンスコード</label>&nbsp;&nbsp;

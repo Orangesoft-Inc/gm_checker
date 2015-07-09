@@ -17,6 +17,9 @@
 	"activated":{
 		"message":"登録済み"
 	},
+	"deactivate":{
+		"message":"解除する"
+	},
 	"licensePeriod":{
 		"message":"%Y年%M月%D日まで有効です（あと%L日）"
 	},
@@ -69,13 +72,16 @@
 		"message":"個を超えたら警告する"
 	},
 	"cfg_confirm":{
-		"message":"メールを送る前に確認する"
+		"message":"誤送信対策機能を有効にする"
 	},
 	"cfg_warning":{
 		"message":"以下の文字列を含んでいたときは警告する"
 	},
 	"cfg_forcebcc":{
 		"message":"以下のアドレスをbccに追加する"
+	},
+	"cfg_reinforce":{
+		"message":"送信先をひとつひとつ確認する (Premium)"
 	},
 	"cfg_verbose":{
 		"message":"デベロッパーモード"

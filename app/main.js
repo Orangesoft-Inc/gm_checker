@@ -39,7 +39,7 @@ function main() {
 	// 設定
 	var opts = {
 		tocc:"",
-		confirm_sent:true,
+		confirm_sent:false,
 		keywords:[],
 		force_bcc:[],
 		verbose:false,
@@ -48,7 +48,9 @@ function main() {
 	};
 
 	document.addEventListener("click", function(ev) {
-		console.log('click');
+		// 誤送信対策有効？
+		if (!opts.confirm_sent) { return; }
+opts.verbose && console.log('click');
 		var res = onclick(ev);
 		if (res) {
 			// 送信ボタンがクリックされた
@@ -69,6 +71,8 @@ opts.verbose && console.log('go dialog');
 	}, true); // キャプチャリングフェーズ（useCapture=true）として、内側のイベントハンドラを外側のハンドラより先に実行させる。なのでjqueryの'on'などは使えない。
 
 	document.addEventListener("keydown", function(ev) {
+		// 誤送信対策有効？
+		if (!opts.confirm_sent) { return; }
 		if (Dialog.processKey(ev)) {
 			ev.preventDefault();
 			ev.stopPropagation();

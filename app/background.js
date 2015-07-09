@@ -5,6 +5,7 @@ var CONFIG = {
 	CONFIRM_SENT: "jp.co.orangesoft.GM_Checker.config.confirm_sent",
 	KEYWORD: "jp.co.orangesoft.GM_Checker.config.keywords",
 	FORCE_BCC: "jp.co.orangesoft.GM_Checker.config.force_bcc",
+	REINFORCE: "jp.co.orangesoft.GM_Checker.config.reinforce",
 	LICENSE:  "jp.co.orangesoft.GM_Checker.config.license",
 	VERBOSE:  "jp.co.orangesoft.GM_Checker.config.verbose"
 };
@@ -27,37 +28,36 @@ window.onload = function() {
 
 function getOptions() {
 	var options = {
+		confirm_sent: false,
 		tocc: 10,
 		tocc_outer: 10,
-		confirm_sent: true,
-		verbose: true,
+		keywords: null,
+		force_bcc: null,
+		reinforce: false,
+		verbose: false,
 		license: "",
-		premium: true
+		premium: false
 	};
 
-	var v = localStorage[CONFIG.TO_CC];
+	var v = localStorage.getItem(CONFIG.TO_CC);
 	if (v) {
 		options.tocc = options.tocc_outer = parseInt(v);
 	}
-	v = localStorage[CONFIG.CONFIRM_SENT];
-	if (v) {
-		options.confirm_sent = Boolean(v);
-	}
-	v = localStorage[CONFIG.KEYWORD];
+	options.confirm_sent = (localStorage.getItem(CONFIG.CONFIRM_SENT) == 'true');
+	v = localStorage.getItem(CONFIG.KEYWORD);
 	if (v) {
 		options.keywords = v.toLineArray();
 	}
-	v = localStorage[CONFIG.FORCE_BCC];
+	v = localStorage.getItem(CONFIG.FORCE_BCC);
 	if (v) {
 		options.force_bcc = v.toLineArray();
 	}
-	v = localStorage[CONFIG.VERBOSE];
-	if (v) {
-		options.verbose = Boolean(v);
-	}
-	v = localStorage[CONFIG.LICENSE];
+	options.reinforce = (localStorage.getItem(CONFIG.REINFORCE) == 'true');
+	options.verbose = (localStorage.getItem(CONFIG.VERBOSE) == 'true');
+	v = localStorage.getItem(CONFIG.LICENSE);
 	if (v && Premium.validate(v)) {
 		options.license = v;
+		options.premium = true;
 	}
 	return options;
 }
