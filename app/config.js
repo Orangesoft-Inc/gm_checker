@@ -57,6 +57,10 @@ $(document).ready(function(){
 		$.extend(opts, upds);
 		this.disabled = true;
 		$('#tip').show().fadeOut(1000);
+
+		// 変更をメッセージで通知
+//		chrome.extension.sendMessage({cmd:"gmchecker", config:JSON.stringify(opts)}, function(resp){});
+		chrome.storage.sync.set({update:$.now()}, function(){});
 	});
 
 	function anyChanged() {

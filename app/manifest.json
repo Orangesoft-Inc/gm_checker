@@ -23,6 +23,10 @@
 		"run_at": "document_end"
 	}],
 
+	"permissions": [
+		"storage"
+	],
+
 	"web_accessible_resources": [
 		"html/send_recipe.html",
 		"image/staticons.png",

@@ -36,6 +36,15 @@ var Lang = function(){
 //
 
 function main() {
+	// 設定変更イベントリスナ
+	chrome.storage.onChanged.addListener(function(changes, namespace){
+		if (namespace == "sync") {
+opts.verbose && console.log("config changed");
+			// 設定を再取得
+			getOptions();
+		}
+	});
+
 	// 設定
 	var opts = {
 		tocc:"",
