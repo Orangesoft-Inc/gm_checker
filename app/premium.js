@@ -51,6 +51,44 @@ var Premium = function(){
 		result: function() {
 			return _res;
 		},
+		issue: function(code, ldate) {
+			_res = { code:0, license:null };
+			// check code
+			if (typeof code != "string" || code.length != 6) {
+				_res.code = 1;
+				return false;
+			}
+			// check date
+			if (typeof ldate != "string" || ldate.length != 8) {
+				_res.code = 2;
+				return false;
+			}
+			var y = parseInt(ldate.substr(0, 4), 10);
+			var m = parseInt(ldate.substr(4, 2), 10);
+			var d = parseInt(ldate.substr(6, 2), 10);
+			if (y < 2015 || m < 1 || m > 12 || d < 1 || d > _dmx[m]) {
+				_res.code = 3;
+				return false;
+			}
+			// 期限まであと何日かを計算
+			var lt = new Date(y, m - 1, d);
+			lt = Math.floor(lt.getTime() / 86400000) + 1;	// 終了日の翌日
+			var ct = Math.floor(Date.now() / 86400000);
+			var left = lt - ct;
+			if (left < 0) {
+				_res.code = 4;
+				return false;
+			}
+			// calc hash
+			var B = code + ldate;
+			var W = ""; for (var i = B.length - 1; i >= 0; i--) { W += B.charAt(i); }
+			B = ("000" + this.calc(B).toString(16)).slice(-4).toUpperCase();
+			W = ("000" + this.calc(W).toString(16)).slice(-4).toUpperCase();
+			_res.hash = (B + W);
+			_res.license = "G" + code + "-" + ldate + "-" + _res.hash;
+			_res.code = 0;
+			return true;
+		},
 		validate: function(key) {
 			// key:
 			//    Gxxxxxx-yyyymmdd-zzzzzzzz
@@ -76,11 +114,11 @@ var Premium = function(){
 				}
 				_res.limit = [ y,m,d ];
 				// 期限まであと何日かを計算
-				var lt = new Date(y, m, d);
+				var lt = new Date(y, m - 1, d);
 				lt = Math.floor(lt.getTime() / 86400000) + 1;	// 終了日の翌日
 				var ct = Math.floor(Date.now() / 86400000);
 				_res.left = lt - ct;
-				if (_res.left < 0) {
+				if (_res.left <= 0) {
 					_res.code = 4;
 					return false;
 				}
