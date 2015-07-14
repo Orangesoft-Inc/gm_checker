@@ -21,6 +21,17 @@ $(document).ready(function(){
 			$(this).text(s);
 		}
 	});
+
+	// マニフェストを読む
+	var xhr = new XMLHttpRequest();
+	xhr.onload = function() {
+		var manifest = JSON.parse(xhr.responseText);
+		$('#version').text("version " + manifest.version);
+	};
+	xhr.open('GET', '/manifest.json', true);
+	xhr.send(null);
+
+	// 現在の設定内容を表示
 	var opts = {};
 	var upds = {};
 	opts.tocc = localStorage.getItem(CONFIG.TO_CC) || 10;

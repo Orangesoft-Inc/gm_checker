@@ -13,6 +13,7 @@ var CONFIG = {
 String.prototype.toLineArray = function() { return this != "" ? this.replace(/\r/g, "").split(/\n+/) : []; }
 
 window.onload = function() {
+	// 通信用リスナ登録
 	chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
 		switch (request.cmd) {
 		case "get_options":
@@ -21,6 +22,9 @@ window.onload = function() {
 		case "set_options":
 			localStorage[request.key] = request.value;
 			sendResponse("ok");
+			break;
+		case "get_version":
+			sendResponse({ version: manifgest ? manifest.version : "" });
 			break;
 		}
 	});
@@ -62,3 +66,15 @@ function getOptions() {
 	return options;
 }
 
+
+function get_manifest(function(manifest){ var version = manifest.version; });
+
+function get_manifest(callback) {
+	var url = '/manifest.json';
+	var xhr = new XMLHttpRequest();
+	xhr.onload = function() {
+		callback(JSON.parse(xhr.responseText));
+	};
+	xhr.open('GET',url,true);
+	xhr.send(null);
+}
