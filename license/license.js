@@ -26,6 +26,10 @@ $(document).ready(function(){
 	$.datepicker.setDefaults($.extend({showOtherMonths:true,selectOtherMonths:true,showAnim:'fadeIn',showOn:'focus'}, CALENDAR));
 	$("#limitdate").datepicker();
 
+	// 初期表示は1年後の今日
+	var ct = new Date();
+	$("#limitdate").val(String(ct.getFullYear() + 1) + ("0" + (ct.getMonth() + 1)).slice(-2) + ("0" + ct.getDate()).slice(-2));
+
 	$('#issue').on("click", function(ev){
 		var ok = Premium.issue($('#usercode').val(), $('#limitdate').val());
 		var res = Premium.result();

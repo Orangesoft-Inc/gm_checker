@@ -13,6 +13,9 @@ var CONFIG = {
 String.prototype.toLineArray = function() { return this != "" ? this.replace(/\r/g, "").split(/\n+/) : []; }
 
 window.onload = function() {
+	// マニフェストを読む
+	var manifest;
+	get_manifest(function(m){ manifest = m; });
 	// 通信用リスナ登録
 	chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
 		switch (request.cmd) {
@@ -65,9 +68,6 @@ function getOptions() {
 	}
 	return options;
 }
-
-
-function get_manifest(function(manifest){ var version = manifest.version; });
 
 function get_manifest(callback) {
 	var url = '/manifest.json';

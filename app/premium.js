@@ -80,7 +80,7 @@ var Premium = function(){
 				return false;
 			}
 			// calc hash
-			var B = code + ldate;
+			var B = "G" + code + ldate;
 			var W = ""; for (var i = B.length - 1; i >= 0; i--) { W += B.charAt(i); }
 			B = ("000" + this.calc(B).toString(16)).slice(-4).toUpperCase();
 			W = ("000" + this.calc(W).toString(16)).slice(-4).toUpperCase();
