@@ -85,7 +85,6 @@ $(document).ready(function(){
 	function validateLicense(key) {
 		var ok = Premium.validate(key);
 		var res = Premium.result();
-alert(res.code);
 		if (ok) {
 //			$('#license').prop("readonly", true);
 			$('#activate').prop("disabled", true);
