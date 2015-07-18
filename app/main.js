@@ -60,7 +60,7 @@ opts.verbose && console.log("config changed");
 		// 誤送信対策有効？
 		if (!opts.confirm_sent) { return; }
 opts.verbose && console.log('click');
-		var res = onclick(ev);
+		var res = onSendButton(ev);
 		if (res) {
 			// 送信ボタンがクリックされた
 			if ($.data(res.target, "marker") == MARKER) {
@@ -88,7 +88,9 @@ opts.verbose && console.log('go dialog');
 			return false;
 		}
 
-		if (ev.keyCode == KEYS.VK_ENTER && ((ev.ctrlKey && !ev.metaKey) || (!ev.ctrlKey && ev.metaKey))) {
+		var sb = onSendButton(ev);		// 送信ボタンにフォーカスがあってのkeydownイベントかどうか
+		if ((sb && (ev.keyCode == KEYS.VK_ENTER || ev.keyCode == KEYS.VK_SPACE)) ||
+			(ev.keyCode == KEYS.VK_ENTER && ((ev.ctrlKey && !ev.metaKey) || (!ev.ctrlKey && ev.metaKey)))) {
 			// Ctrl+Enter押下時、メール編集画面が開いているなら、チェック処理をおこなう
 opts.verbose && console.log("Ctrl + Enter");
 			var btn = findSendButton();
@@ -352,9 +354,9 @@ opts.verbose && console.debug('getFormValues');
 	}
 
 	//-----------------------------------------------------------------
-	// 送信ボタンがクリックされたかをチェック
+	// 送信ボタンでのイベント（クリックなど）が発生したかをチェック
 	//-----------------------------------------------------------------
-	function onclick(event) {
+	function onSendButton(event) {
 		var target = event.target;
 		var os = false;
 		if (isEmpty(target.className)) {
@@ -366,7 +368,7 @@ opts.verbose && console.debug('getFormValues');
 			os = !newStyle();
 		}
 
-opts.verbose && console.log('onclick=' + target.className);
+opts.verbose && console.log('button=' + target.className);
 		if ($(target).attr("role") != "button" ||
 			!$(target).hasClass("T-I-atl") ||
 			target.textContent != sendButtonTitle) {
