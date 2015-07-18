@@ -8,6 +8,7 @@ var CONFIG = {
 	FORCE_BCC: "jp.co.orangesoft.GM_Checker.config.force_bcc",
 	REINFORCE: "jp.co.orangesoft.GM_Checker.config.reinforce",
 	LICENSE:  "jp.co.orangesoft.GM_Checker.config.license",
+	VERSION:  "jp.co.orangesoft.GM_Checker.config.version",
 	VERBOSE:  "jp.co.orangesoft.GM_Checker.config.verbose"
 };
 
@@ -22,6 +23,9 @@ $(document).ready(function(){
 		}
 	});
 
+	// 現在の設定内容を表示
+	var opts = {};
+	var upds = {};
 	// マニフェストを読む
 	var xhr = new XMLHttpRequest();
 	xhr.onload = function() {
@@ -31,9 +35,6 @@ $(document).ready(function(){
 	xhr.open('GET', '/manifest.json', true);
 	xhr.send(null);
 
-	// 現在の設定内容を表示
-	var opts = {};
-	var upds = {};
 	opts.tocc = localStorage.getItem(CONFIG.TO_CC) || 10;
 	$("#to_cc").val(opts.tocc).on('change', function(){ upds.tocc = this.value; anyChanged(); });
 	opts.confirm_sent = (localStorage.getItem(CONFIG.CONFIRM_SENT) == 'true');

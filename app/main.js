@@ -253,7 +253,7 @@ opts.verbose && console.debug('getFormValues');
 						cargo = $('#rt_' + n);
 						info[n].forEach(function(a){
 							var inner;
-							if (opts.premium) {
+							if (opts.premium && opts.reinforce) {
 								inner = '<label><input type="checkbox">&nbsp;' + escapeHtml(a) + '</label>';
 							} else {
 								inner = escapeHtml(a);
@@ -295,7 +295,7 @@ opts.verbose && console.debug('getFormValues');
 				}
 
 				// 動的に作成したチェックボックスのハンドラ
-				if (opts.premium) {
+				if (opts.premium && opts.reinforce) {
 					this.form.ok.disabled = true;
 					$(this.form).find(':checkbox').on("click", this.form, function(ev){
 						var f = ev.data;
