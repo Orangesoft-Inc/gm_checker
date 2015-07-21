@@ -1,4 +1,4 @@
-// background.js
+//background.js
 
 var CONFIG = {
 	TO_CC: "jp.co.orangesoft.GM_Checker.config.to_cc",
@@ -7,8 +7,7 @@ var CONFIG = {
 	FORCE_BCC: "jp.co.orangesoft.GM_Checker.config.force_bcc",
 	REINFORCE: "jp.co.orangesoft.GM_Checker.config.reinforce",
 	LICENSE:  "jp.co.orangesoft.GM_Checker.config.license",
-	VERBOSE:  "jp.co.orangesoft.GM_Checker.config.verbose",
-	VERSION:  "jp.co.orangesoft.GM_Checker.config.version"
+	VERBOSE:  "jp.co.orangesoft.GM_Checker.config.verbose"
 };
 
 String.prototype.toLineArray = function() { return this != "" ? this.replace(/\r/g, "").split(/\n+/) : []; }
@@ -43,7 +42,6 @@ function getOptions() {
 		force_bcc: null,
 		reinforce: false,
 		verbose: false,
-		version: "",
 		license: "",
 		premium: false
 	};
@@ -63,10 +61,6 @@ function getOptions() {
 	}
 	options.reinforce = (localStorage.getItem(CONFIG.REINFORCE) == 'true');
 	options.verbose = (localStorage.getItem(CONFIG.VERBOSE) == 'true');
-	v = localStorage.getItem(CONFIG.VERSION);
-	if (v) {
-		options.version = v;
-	}
 	v = localStorage.getItem(CONFIG.LICENSE);
 	if (v && Premium.validate(v)) {
 		options.license = v;
@@ -87,19 +81,16 @@ function get_manifest(callback) {
 
 // ----- for page action ----------------------
 
-function matchUrl(tab) {
+function showPageIcon(tab) {
 	var re = /http(s)*:\/\/mail.google.com\//;
-	return (tab && tab.url && tab.url.match(re));
+	(tab && tab.url && tab.url.match(re)) ? chrome.pageAction.show(tab.id) : chrome.pageAction.hide(tab.id);
 }
 
 chrome.tabs.onUpdated.addListener(function(tabId, change, tab) {
-	if (change.status == "complete") {
-		matchUrl(tab) ? chrome.pageAction.show(tabId) : chrome.pageAction.hide(tabId);
-	}
+	(change.status == "complete") && showPageIcon(tab);
 });
 
 // Ensure the current selected tab is set up.
 chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-	var tab = tabs[0];
-	matchUrl(tab) ? chrome.pageAction.show(tab.id) : chrome.pageAction.hide(tab.id);
+	showPageIcon(tab[0]);
 });

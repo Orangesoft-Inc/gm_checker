@@ -34,9 +34,10 @@ $(document).ready(function(){
 		var ok = Premium.issue($('#usercode').val(), $('#limitdate').val());
 		var res = Premium.result();
 		if (ok) {
-			$('#licensekey').val(res.license);
+			$('#licensekey').val(res.license).focus().select();
 		} else {
 			$('#licensekey').val("#error - " + ERRORS[parseInt(res.code, 10)]);
+			(res.code == 1) ? $('#usercode').focus() : $('#limitdate').focus();
 		}
 	});
 

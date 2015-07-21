@@ -177,6 +177,7 @@ uiDialog.prototype.open = function(autowidth, autoheight) {
 	if (caption.length > 0) {
 		this.title && caption.text(this.title);
 		caption.wrapInner('<span></span>');			// タイトルをラップ
+
 		if (this.sysclose) {
 			// キャプション右はじのcloseボタン
 			$('<span>')
