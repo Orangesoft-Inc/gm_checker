@@ -20,7 +20,7 @@
 		"run_at": "document_end"
 	}],
 	"permissions": [
-		"tabs",		//@
+		"tabs",
 		"storage"
 	],
 	"web_accessible_resources": [
