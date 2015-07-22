@@ -235,11 +235,11 @@ opts.verbose && console.debug('getFormValues');
 			});
 		}
 		// マイナンバーチェック
-		if (!isEmpty(body)) {
-			// マイナンバー12桁   0123 4567 8901
+		if (!isEmpty(body) && opts.premium) {
+			// マイナンバー12桁（全角も対象）   0123 4567 8901
 			// 簡易チェック space、ハイフン、コロン、アンダーバーを無視した文字列の中から、
 			// 12桁の数字列を発見できたら、マイナンバー警告を入れる
-			var ws = body.replace(/[\-\._\s]/g, "");
+			var ws = HanConvert.zen2han(body.replace(/[\-\._\s]/g, ""));
 			if (ws.match(/[^\d]\d{12}[^\d]/)) {
 				alerts.push(resStr("foundMyNumber"));
 			}
