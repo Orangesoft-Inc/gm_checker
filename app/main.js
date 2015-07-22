@@ -235,7 +235,15 @@ opts.verbose && console.debug('getFormValues');
 			});
 		}
 		// マイナンバーチェック
-		!isEmpty(body) && body.match(/[^\d-\.]\d{4}[-_\. ]?\d{4}[-_\. ]?\d{4}[^\d-\.]/) && alerts.push(resStr("foundMyNumber"));
+		if (!isEmpty(body)) {
+			// マイナンバー12桁   0123 4567 8901
+			// 簡易チェック space、ハイフン、コロン、アンダーバーを無視した文字列の中から、
+			// 12桁の数字列を発見できたら、マイナンバー警告を入れる
+			var ws = body.replace(/[\-\._\s]/g, "");
+			if (ws.match(/[^\d]\d{12}[^\d]/)) {
+				alerts.push(resStr("foundMyNumber"));
+			}
+		}
 		// 確認画面を表示する
 		dialogOpen({resource: DIALOGS.sendRecipe,
 			oninit: function(){
