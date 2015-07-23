@@ -45,6 +45,7 @@ $(document).ready(function(){
 	$('#force_bcc').val(opts.force_bcc).on('keyup', function() { upds.force_bcc = this.value; anyChanged(); });
 	opts.reinforce = (localStorage.getItem(CONFIG.REINFORCE) == 'true');
 	$("#reinforce").prop('checked', opts.reinforce).on('click', function() { upds.reinforce = this.checked; anyChanged(); });
+
 //	opts.verbose = (localStorage.getItem(CONFIG.VERBOSE) == 'true');
 //	$("#verbose").prop('checked', opts.verbose).on('click', function() { upds.verbose = this.checked; anyChanged(); });
 	$("#verbose").closest('div.par').hide();
@@ -120,6 +121,7 @@ $(document).ready(function(){
 					toDeactivate();
 				}
 			});
+		$("#reinforce").prop('disabled', true);
 	};
 
 	function toDeactivate() {
@@ -145,6 +147,7 @@ $(document).ready(function(){
 				$('#reinforce').prop('disabled', true);
 				toActivate();
 		});
+		$("#reinforce").prop('disabled', false);
 	};
 });
 
