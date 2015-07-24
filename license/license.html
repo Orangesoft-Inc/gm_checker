@@ -61,6 +61,8 @@
 		font-family:Meiryo,'Hiragino Kaku Gothic Pro','MS PGothic','lucida grande',tahoma,verdana,arial,sans-serif;
 		font-size:12px;
 	}
+	.valid { color:#00C; }
+	.invalid { color:#C00; }
 </style>
 <script type="text/javascript" src="../app/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="../app/jquery-ui-1.11.4.min.js"></script>
@@ -91,6 +93,9 @@
 		<div style="margin:1em 0">
 			<input type="button" class="default" id="issue" name="apply" value="発行">
 			&nbsp;&nbsp;<input type="text" id="licensekey" style="width:30em" placeholder="発行されたライセンスキー">
+		</div>
+		<div style="margin-bottom:1em">
+			<input type="button" id="validate" name="validate" value="検証">&nbsp;&nbsp;<span id="leftdate"></span>
 		</div>
 	</div>
 	<div>

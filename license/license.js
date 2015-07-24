@@ -19,7 +19,8 @@ var ERRORS = [
 	"ユーザーコードが6桁の文字列ではありません",
 	"ライセンス終了日が8桁の文字列ではありません",
 	"ライセンス終了日が間違っています",
-	"ライセンスの有効日数が規定外です"
+	"ライセンスの有効日数が規定外です",
+	"ハッシュ値が間違っています"
 ];
 $(document).ready(function(){
 
@@ -38,6 +39,20 @@ $(document).ready(function(){
 		} else {
 			$('#licensekey').val("#error - " + ERRORS[parseInt(res.code, 10)]);
 			(res.code == 1) ? $('#usercode').focus() : $('#limitdate').focus();
+		}
+	});
+
+	$('#validate').on("click", function(ev){
+		var ok = Premium.validate($('#licensekey').val());
+		var res = Premium.result();
+		if (ok) {
+			var s = "検証OK: ライセンス終了日は%Y年%M月%D日"
+					.replace("%Y", res.limit[0])
+					.replace("%M", res.limit[1])
+					.replace("%D", res.limit[2]);
+			$('#leftdate').text(s).removeClass('invalid').addClass('valid');
+		} else {
+			$('#leftdate').text("検証NG: " + ERRORS[res.code]).removeClass('valid').addClass('invalid');
 		}
 	});
 

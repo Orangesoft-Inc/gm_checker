@@ -48,9 +48,8 @@ var Premium = function(){
 			}
 			return (R ^ (-1)) >>> 0;
 		},
-		result: function() {
-			return _res;
-		},
+		scalc: function(s) { return ("000" + this.calc(s).toString(16)).slice(-4).toUpperCase(); },
+		result: function() { return _res; },
 		issue: function(code, ldate) {
 			_res = { code:0, license:null };
 			// check code
@@ -80,11 +79,9 @@ var Premium = function(){
 				return false;
 			}
 			// calc hash
-			var B = "G" + code + ldate;
+			var B = code + 'G' + ldate;
 			var W = ""; for (var i = B.length - 1; i >= 0; i--) { W += B.charAt(i); }
-			B = ("000" + this.calc(B).toString(16)).slice(-4).toUpperCase();
-			W = ("000" + this.calc(W).toString(16)).slice(-4).toUpperCase();
-			_res.hash = (B + W);
+			_res.hash = (this.scalc(W) + this.scalc(B));
 			_res.license = "G" + code + "-" + ldate + "-" + _res.hash;
 			_res.code = 0;
 			return true;
@@ -122,12 +119,10 @@ var Premium = function(){
 					_res.code = 4;
 					return false;
 				}
-				// check hash
-				var B = v[0] + v[1];
+				// check hash --> 'G' move2end
+				var B = v[0].substr(1, 6) + 'G' + v[1];
 				var W = ""; for (var i = B.length - 1; i >= 0; i--) { W += B.charAt(i); }
-				B = ("000" + this.calc(B).toString(16)).slice(-4).toUpperCase();
-				W = ("000" + this.calc(W).toString(16)).slice(-4).toUpperCase();
-				if (v[2] != (B + W)) {
+				if (v[2] != (this.scalc(W) + this.scalc(B))) {
 					_res.code = 5;
 					return false;
 				}

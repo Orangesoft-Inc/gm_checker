@@ -88,6 +88,8 @@ opts.verbose && console.log('go dialog');
 			return false;
 		}
 
+		if (ev.keyCode != KEYS.VK_ENTER && ev.keyCode != KEYS.VK_SPACE) { return; }
+
 		var sb = onSendButton(ev);		// 送信ボタンにフォーカスがあってのkeydownイベントかどうか
 		if ((sb && (ev.keyCode == KEYS.VK_ENTER || ev.keyCode == KEYS.VK_SPACE)) ||
 			(ev.keyCode == KEYS.VK_ENTER && ((ev.ctrlKey && !ev.metaKey) || (!ev.ctrlKey && ev.metaKey)))) {
