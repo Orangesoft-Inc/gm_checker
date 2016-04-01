@@ -9,7 +9,6 @@ var CONFIG = {
 	LICENSE:  "jp.co.orangesoft.GM_Checker.config.license",
 	VERBOSE:  "jp.co.orangesoft.GM_Checker.config.verbose"
 };
-
 String.prototype.toLineArray = function() { return this != "" ? this.replace(/\r/g, "").split(/\n+/) : []; }
 
 window.onload = function() {
@@ -43,7 +42,8 @@ function getOptions() {
 		reinforce: false,
 		verbose: false,
 		license: "",
-		premium: false
+		premium: false,
+		condition: null
 	};
 
 	var v = localStorage.getItem(CONFIG.TO_CC);
@@ -53,16 +53,17 @@ function getOptions() {
 	options.confirm_sent = (localStorage.getItem(CONFIG.CONFIRM_SENT) == 'true');
 	v = localStorage.getItem(CONFIG.KEYWORD);
 	if (v) {
-		options.keywords = v.toLineArray();
+		options.keywords = v.toLineArray().filter(function(s) { return (s.length > 0); });
 	}
 	v = localStorage.getItem(CONFIG.FORCE_BCC);
 	if (v) {
-		options.force_bcc = v.toLineArray();
+		options.force_bcc = v.toLineArray().filter(function(s) { return (s.length > 0); });
 	}
 	options.reinforce = (localStorage.getItem(CONFIG.REINFORCE) == 'true');
 	options.verbose = (localStorage.getItem(CONFIG.VERBOSE) == 'true');
 	v = localStorage.getItem(CONFIG.LICENSE);
 	if (v && Premium.validate(v)) {
+		options.condition = Premium.result();
 		options.license = v;
 		options.premium = true;
 	}
@@ -82,15 +83,15 @@ function get_manifest(callback) {
 // ----- for page action ----------------------
 
 function showPageIcon(tab) {
-	var re = /http(s)*:\/\/mail.google.com\//;
+	var re = /http(s)*:\/\/mail\.google\.com\//;
 	(tab && tab.url && tab.url.match(re)) ? chrome.pageAction.show(tab.id) : chrome.pageAction.hide(tab.id);
 }
 
 chrome.tabs.onUpdated.addListener(function(tabId, change, tab) {
-	(change.status == "complete") && showPageIcon(tab);
+	(change.status == "loading"/*"complete"*/) && showPageIcon(tab);
 });
 
 // Ensure the current selected tab is set up.
 chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-	showPageIcon(tab[0]);
+	showPageIcon(tabs[0]);
 });
