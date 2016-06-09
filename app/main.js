@@ -68,7 +68,6 @@ opts.verbose && console.log("config changed");
 	//-----------------------------------------------------------------
 	function getOptions() {
 		chrome.extension.sendMessage({cmd: "get_options"}, function(res) { $.extend(opts, res.options); });
-opts.verbose = true;
 	};
 
 	document.addEventListener("click", function(ev) {
