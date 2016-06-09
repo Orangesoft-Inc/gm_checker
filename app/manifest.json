@@ -1,6 +1,6 @@
 {
 	"name": "GM Checker",
-	"version": "0.2.3",
+	"version": "0.2.4",
 	"manifest_version": 2,
 	"description": "__MSG_appDescription__",
 	"default_locale": "ja",
@@ -26,7 +26,8 @@
 	"web_accessible_resources": [
 		"html/send_recipe.html",
 		"image/staticons.png",
-		"image/diagonals_thick.png"
+		"image/diagonals_thick.png",
+		"private.json"
 	],
 	"icons": {
 		"128": "image/gmc128x128.png",

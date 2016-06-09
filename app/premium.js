@@ -74,17 +74,16 @@ var Premium = function(){
 			lt = Math.floor(lt.getTime() / 86400000) + 1;	// 終了日の翌日
 			var ct = Math.floor(Date.now() / 86400000);
 			var left = lt - ct;
-			if (left < 0) {
-				_res.code = 4;
-				return false;
+			if (left <= 0) {
+				// 範囲規定外でもライセンスキーの生成はおこなう
 			}
 			// calc hash
 			var B = code + 'G' + ldate;
 			var W = ""; for (var i = B.length - 1; i >= 0; i--) { W += B.charAt(i); }
 			_res.hash = (this.scalc(W) + this.scalc(B));
 			_res.license = "G" + code + "-" + ldate + "-" + _res.hash;
-			_res.code = 0;
-			return true;
+			_res.code = (left <= 0) ? 4 : 0;
+			return (left > 0);
 		},
 		validate: function(key) {
 			// key:

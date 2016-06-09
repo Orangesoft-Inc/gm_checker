@@ -11,6 +11,7 @@ var CONFIG = {
 	VERSION:  "jp.co.orangesoft.GM_Checker.config.version",
 	VERBOSE:  "jp.co.orangesoft.GM_Checker.config.verbose"
 };
+var nolim = false;
 
 $(document).ready(function(){
 	// 言語対応
@@ -34,6 +35,25 @@ $(document).ready(function(){
 	};
 	xhr.open('GET', '/manifest.json', true);
 	xhr.send(null);
+
+	// カスタムセッティング
+	var pcs = new XMLHttpRequest();
+	pcs.onload = function() {
+		var cst = JSON.parse(pcs.responseText);
+		// copyright
+		try {
+			(cst.copyright === "hide") && $('#copyright').hide();
+		} catch (e) { }
+		try {
+			nolim = (cst.premium === "granted");
+			if (nolim) {
+				$('#premium').hide();
+				toDeactivate();
+			}
+		} catch (e) { }
+	};
+	pcs.open('GET', '/private.json', true);
+	pcs.send(null);
 
 	opts.tocc = localStorage.getItem(CONFIG.TO_CC) || 10;
 	$("#to_cc").val(opts.tocc).on('change', function(){ upds.tocc = this.value; anyChanged(); });
@@ -96,11 +116,11 @@ $(document).ready(function(){
 					.replace("%M", res.limit[1])
 					.replace("%D", res.limit[2])
 					.replace("%L", res.left);
-			$('#leftdate').text(s);
+			$('#leftdate').text(s).removeClass('attn');
 			return true;
 		} else {
 			if (res.code == 4) {		// 期限切れ
-				$('#leftdate').val("limit over");
+				$('#leftdate').text(resStr("licenseExpired")).addClass('attn');
 			}
 		}
 		return false;
@@ -150,4 +170,3 @@ $(document).ready(function(){
 		$("#reinforce").prop('disabled', false);
 	};
 });
-

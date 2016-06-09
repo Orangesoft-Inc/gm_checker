@@ -23,6 +23,9 @@
 	"licensePeriod":{
 		"message":"%Y年%M月%D日まで有効です（あと%L日）"
 	},
+	"licenseExpired":{
+		"message":"ライセンスの有効期限が切れました"
+	},
 	"btnSend":{
 		"message": "送信"
 	},

@@ -2,63 +2,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>gm checker</title>
-	<style>
-		body {
-			font-family:Meiryo,'Hiragino Kaku Gothic Pro','MS PGothic','lucida grande',tahoma,verdana,arial,sans-serif;
-			font-size:12px;
-			width: 480px;
-			background: #fff;
-			background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#fafafa)); 
-			margin:0;
-			padding:0;
-		}
-		h3 {
-			background-color: #f6aa2f;
-			color:white;
-			text-align: center;
-			margin: 2px;
-		}
-		h4 {
-			border-left:8px solid #ccc;
-			border-bottom:1px solid #ccc;
-			padding-left: 4px;
-			margin: 8px 2px 2px;
-		}
-		input,
-		select,
-		textarea {
-			font-family:Meiryo,'Hiragino Kaku Gothic Pro','MS PGothic','lucida grande',tahoma,verdana,arial,sans-serif;
-		}
-		input[type="text"],
-		input[type="password"],
-		textarea,
-		select {
-			border:1px solid #ccc;
-			padding:2px 3px;
-			border-radius: 3px;
-		}
-		.container { padding:1em; }
-		.par { margin:.5em 1em; }
-		.copyright, .ver {
-			font-size: 90%;
-		}
-		input[type="button"] {
-			height: 2em;
-			min-width: 6.5em;
-			padding: 3px 12px 5px;
-			border: 0px;
-			background-color: rgba(192, 192, 192, 0.7);
-			color: #212121;
-		}
-		input[type="button"]:hover { background-color: rgba(212, 212, 212, 0.82); }
-		input[type="button"]:focus { background-color: rgba(212, 212, 212, 0.82); }
-		input[type="button"]:active { background-color: #212121; color: white; }
-		input[type="button"]:disabled { background-color: #f8f8f8; color:#888; }
-		input[type="button"].default { background-color: #6D84B4; color: white; }
-		input[type="button"]:hover.default { background-color: #7b95cb; }
-		input[type="button"]:active.default { background-color: #212121; }
-		input[type="button"]:disabled.default { background-color: #bbb; }
-	</style>
+	<link rel=stylesheet type="text/css" href="./css/config.css" media="screen">
 	<script type="text/javascript" src="./jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="./resource.js"></script>
 	<script type="text/javascript" src="./premium.js"></script>
@@ -69,7 +13,7 @@
 	<h3>GM Checker</h3>
 	<div style="text-align:right">
 		<span class="ver" id="version">version 0.2.3</span>&nbsp;
-		<span class="copyright"><a href="http://www.orangesoft.co.jp" target="_blank">(C) Orangesoft Inc.</a></span>
+		<span class="copyright" id="copyright"><a href="http://www.orangesoft.co.jp" target="_blank">(C) Orangesoft Inc.</a></span>
 	</div>
 	<h4 data-i18n="cfg_overview">概要</h4>
 	<div class="par" data-i18n="cfg_description">
@@ -108,7 +52,7 @@
 			</div>
 		</div>
 	</div>
-	<div>
+	<div id="premium">
 		<h4 data-i18n="cfg_premium">Premium版</h4>
 		<div class="par">
 			<label for="licence" data-i18n="cfg_license">ライセンスコード</label>&nbsp;&nbsp;

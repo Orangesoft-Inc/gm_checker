@@ -18,10 +18,17 @@ var Lang = function(){
 	return {
 		type: function(){
 			if (!lang) {
-				lang = "en";			// とりあえずデフォルトは英語
+				lang = "ja";			// デフォルトは日本語
+				var checkList = composeButtonList;
+				// 「新規作成」ボタンのテキストを取得して言語を判定
 				var s = $('div.T-I-KE[role="button"]').text();
-				for (var key in composeButtonList) {
-					if (composeButtonList[key] == s) {
+				if (!s) {
+					// 「新規作成」ボタンが無いので、「送信」ボタンのテキストを取得
+					s = $('div[id=":t1"]').text();
+					checkList = sendButtonList;
+				}
+				for (var key in checkList) {
+					if (checkList[key] == s) {
 						lang = key;
 						break;
 					}
@@ -54,6 +61,14 @@ opts.verbose && console.log("config changed");
 		verbose:false,
 		license:"",
 		premium:false
+	};
+
+	//-----------------------------------------------------------------
+	//
+	//-----------------------------------------------------------------
+	function getOptions() {
+		chrome.extension.sendMessage({cmd: "get_options"}, function(res) { $.extend(opts, res.options); });
+opts.verbose = true;
 	};
 
 	document.addEventListener("click", function(ev) {
@@ -111,14 +126,7 @@ opts.verbose && console.log("find send button");
 	// 使用言語ごとの送信ボタンラベル
 	sendButtonTitle = sendButtonList[ Lang.type() ];
 
-console.log("GM Checker initilized");
-
-	//-----------------------------------------------------------------
-	//
-	//-----------------------------------------------------------------
-	function getOptions() {
-		chrome.extension.sendMessage({cmd: "get_options"}, function(res) { $.extend(opts, res.options); });
-	};
+console.log("GM Checker initilized: " + Lang.type());
 
 	//-----------------------------------------------------------------
 	// セレクタ内の':'をエスケープする（jquery）
@@ -306,6 +314,15 @@ opts.verbose && console.debug('getFormValues');
 					cargo.parent().show();
 				}
 
+				// ライセンス期限警告
+				if (opts.premium && opts.condition.left <= 30) {
+					var s = resStr("licensePeriod")
+						.replace("%Y", opts.condition.limit[0])
+						.replace("%M", opts.condition.limit[1])
+						.replace("%D", opts.condition.limit[2])
+						.replace("%L", opts.condition.left);
+					$('#license_warn').text(s).show();
+				}
 				// 動的に作成したチェックボックスのハンドラ
 				if (opts.premium && opts.reinforce) {
 					this.form.ok.disabled = true;

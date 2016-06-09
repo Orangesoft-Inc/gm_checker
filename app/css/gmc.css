@@ -235,7 +235,10 @@ div.dialog {
 	border-bottom: 1px dotted #999;
 	height: 4px;
 }
-
+.formpad .btn_area
+	margin-top:1em;
+	text-align:right;
+}
 .formbtn_left { text-align:left; padding: .5em 1em 1em; }
 .formbtn_right { text-align:right; padding: .5em 1em 1em; }
 .formbtn_center { text-align:center; padding: .5em 1em 1em; }
@@ -247,7 +250,9 @@ ul.state-warning {
 	background:#b81900 url('chrome-extension://__MSG_@@extension_id__/image/diagonals_thick.png') repeat 0 0 scroll;
 	color: #ffffff;
 }
-
+.attn {
+	color:#c00;
+}
 .ui-group-container {
 	background-color: #fff;
 	padding-bottom: 8px;

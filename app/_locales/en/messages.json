@@ -23,6 +23,9 @@
 	"licensePeriod":{
 		"message":"%Y年%M月%D日まで有効です（あと%L日）"
 	},
+	"licenseExpired":{
+		"message":"The license key you used to activate this product has expired"
+	},
 	"btnSend":{
 		"message": "Send"
 	},
